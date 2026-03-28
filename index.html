@@ -1,51 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My App</title>
+  <title>My Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      text-align: center;
+      padding: 50px;
+    }
+
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      display: inline-block;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    p {
+      color: #666;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background: #4CAF50;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+  </style>
 </head>
 
 <body>
 
-  <header>My App 🚀</header>
-
-  <main>
-
-    <!-- Post 1 -->
-    <div class="card">
-      <h2>Post 1</h2>
-      <img src="https://via.placeholder.com/300" style="width:100%; border-radius:10px;">
-      <p>នេះជាការបង្ហាញ 😎</p>
-      <button onclick="like1()">
-        👍 Like (<span id="count1">0</span>)
-      </button>
-    </div>
-
-    <!-- Post 2 -->
-    <div class="card">
-      <h2>Post 2</h2>
-      <img src="https://via.placeholder.com/300" style="width:100%; border-radius:10px;">
-      <p>ខ្ញុំកំពុងរៀន HTML 🚀</p>
-      <button onclick="like2()">
-        👍 Like (<span id="count2">0</span>)
-      </button>
-    </div>
-
-  </main>
-
-  <script>
-    let c1 = 0;
-    let c2 = 0;
-
-    function like1() {
-      c1++;
-      document.getElementById("count1").innerText = c1;
-    }
-
-    function like2() {
-      c2++;
-      document.getElementById("count2").innerText = c2;
-    }
-  </script>
+  <div class="box">
+    <h1>សួស្តី! 🌍</h1>
+    <p>នេះជាវេបសាយដំបូងរបស់ខ្ញុំ</p>
+    <button onclick="alert('Hello 👋')">ចុចខ្ញុំ</button>
+  </div>
 
 </body>
 </html>
