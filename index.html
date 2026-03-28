@@ -1,55 +1,96 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Website</title>
+  <title>My App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #74ebd5, #ACB6E5);
-      text-align: center;
-      padding: 50px;
+      margin: 0;
+      font-family: Arial;
+      background: #f0f2f5;
     }
 
-    .box {
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      display: inline-block;
-    }
-
-    h1 {
-      color: #333;
-    }
-
-    p {
-      color: #666;
-    }
-
-    button {
-      padding: 10px 20px;
-      border: none;
-      background: #4CAF50;
+    /* Header */
+    header {
+      background: #1877f2;
       color: white;
-      border-radius: 8px;
-      cursor: pointer;
+      text-align: center;
+      padding: 15px;
+      font-size: 20px;
+      position: fixed;
+      width: 100%;
+      top: 0;
     }
 
-    button:hover {
-      background: #45a049;
+    /* Content */
+    main {
+      padding: 70px 10px 70px;
+    }
+
+    /* Card */
+    .card {
+      background: white;
+      padding: 15px;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    /* Button */
+    button {
+      background: #42b72a;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+    }
+
+    /* Bottom Menu */
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: white;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      border-top: 1px solid #ccc;
+    }
+
+    footer div {
+      text-align: center;
+      font-size: 14px;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="box">
-    <h1>សួស្តី! 🌍</h1>
-    <p>នេះជាវេបសាយដំបូងរបស់ខ្ញុំ</p>
-    <button onclick="alert('Hello 👋')">ចុចខ្ញុំ</button>
-  </div>
+  <header>
+    📱 My App
+  </header>
+
+  <main>
+
+    <div class="card">
+      <h2>សួស្តី! 🌍</h2>
+      <p>នេះជាវេបសាយរបស់ខ្ញុំ</p>
+      <button onclick="alert('សូមអរគុណ! ❤️')">ចុច</button>
+    </div>
+
+    <div class="card">
+      <h2>ព័ត៌មាន</h2>
+      <p>នេះជាការសាកល្បង UI ដូច app</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <div>🏠 Home</div>
+    <div>🔍 Search</div>
+    <div>👤 Profile</div>
+  </footer>
 
 </body>
 </html>
