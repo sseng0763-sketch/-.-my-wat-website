@@ -73,18 +73,27 @@
 
   <main>
 
-    <div class="card">
-      <h2>សួស្តី! 🌍</h2>
-      <p>នេះជាវេបសាយរបស់ខ្ញុំ</p>
-      <button onclick="alert('សូមអរគុណ! ❤️')">ចុច</button>
-    </div>
+  <div class="card">
+    <h2>Post 1</h2>
 
-    <div class="card">
-      <h2>ព័ត៌មាន</h2>
-      <p>នេះជាការសាកល្បង UI ដូច app</p>
-    </div>
+    <img src="https://via.placeholder.com/300" style="width:100%; border-radius:10px;">
 
-  </main>
+    <p>នេះជាការបង្ហាញរូប 😎</p>
+
+    <button onclick="like()">👍 Like</button>
+  </div>
+
+  <div class="card">
+    <h2>Post 2</h2>
+
+    <img src="https://via.placeholder.com/300" style="width:100%; border-radius:10px;">
+
+    <p>ខ្ញុំកំពុងរៀន HTML 🚀</p>
+
+    <button onclick="like()">👍 Like</button>
+  </div>
+
+</main>
 
   <footer>
     <div>🏠 Home</div>
@@ -94,3 +103,8 @@
 
 </body>
 </html>
+<script>
+  function like() {
+    alert("អ្នកបានចុច Like ❤️");
+  }
+</script>
