@@ -11,7 +11,6 @@
       background: #f0f2f5;
     }
 
-    /* Header */
     header {
       background: #1877f2;
       color: white;
@@ -23,12 +22,10 @@
       top: 0;
     }
 
-    /* Content */
     main {
       padding: 70px 10px 70px;
     }
 
-    /* Card */
     .card {
       background: white;
       padding: 15px;
@@ -37,7 +34,11 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    /* Button */
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
     button {
       background: #42b72a;
       color: white;
@@ -46,7 +47,6 @@
       border-radius: 5px;
     }
 
-    /* Bottom Menu */
     footer {
       position: fixed;
       bottom: 0;
@@ -57,43 +57,34 @@
       padding: 10px 0;
       border-top: 1px solid #ccc;
     }
-
-    footer div {
-      text-align: center;
-      font-size: 14px;
-    }
   </style>
 </head>
 
 <body>
 
-  <header>
-    📱 My App
-  </header>
+  <header>📱 My App</header>
 
   <main>
 
-  <div class="card">
-    <h2>Post 1</h2>
+    <div class="card">
+      <h2>Post 1</h2>
+      <img src="https://via.placeholder.com/300">
+      <p>នេះជាការបង្ហាញរូប 😎</p>
+      <button onclick="like1()">
+        👍 Like (<span id="count1">0</span>)
+      </button>
+    </div>
 
-    <img src="https://via.placeholder.com/300" style="width:100%; border-radius:10px;">
+    <div class="card">
+      <h2>Post 2</h2>
+      <img src="https://via.placeholder.com/300">
+      <p>ខ្ញុំកំពុងរៀន HTML 🚀</p>
+      <button onclick="like2()">
+        👍 Like (<span id="count2">0</span>)
+      </button>
+    </div>
 
-    <p>នេះជាការបង្ហាញរូប 😎</p>
-
-    <button onclick="like()">👍 Like</button>
-  </div>
-
-  <div class="card">
-    <h2>Post 2</h2>
-
-    <img src="https://via.placeholder.com/300" style="width:100%; border-radius:10px;">
-
-    <p>ខ្ញុំកំពុងរៀន HTML 🚀</p>
-
-    <button onclick="like()">👍 Like</button>
-  </div>
-
-</main>
+  </main>
 
   <footer>
     <div>🏠 Home</div>
@@ -101,10 +92,20 @@
     <div>👤 Profile</div>
   </footer>
 
+  <script>
+    let c1 = 0;
+    let c2 = 0;
+
+    function like1() {
+      c1++;
+      document.getElementById("count1").innerText = c1;
+    }
+
+    function like2() {
+      c2++;
+      document.getElementById("count2").innerText = c2;
+    }
+  </script>
+
 </body>
 </html>
-<script>
-  function like() {
-    alert("អ្នកបានចុច Like ❤️");
-  }
-</script>
