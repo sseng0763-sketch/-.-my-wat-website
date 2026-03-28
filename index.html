@@ -1,1 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>វត្តរបស់ខ្ញុំ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #b8860b;
+        }
+        .box {
+            background: white;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background: orange;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
 
+<h1>🙏 សូមស្វាគមន៍មកកាន់វត្ត 🙏</h1>
+
+<div class="box">
+    <h2>📅 កាលវិភាគ</h2>
+    <p>ថ្ងៃអាទិត្យ - សូត្រធម៌</p>
+</div>
+
+<div class="box">
+    <h2>📖 ព្រះធម៌</h2>
+    <button onclick="showText()">ចុចមើល</button>
+    <p id="text"></p>
+</div>
+
+<script>
+function showText() {
+    document.getElementById("text").innerHTML = "ធ្វើល្អបានល្អ 🙏";
+}
+</script>
+
+</body>
+</html>
