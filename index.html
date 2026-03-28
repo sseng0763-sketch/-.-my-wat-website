@@ -1,55 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Website</title>
+  <title>My App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #74ebd5, #ACB6E5);
-      text-align: center;
-      padding: 50px;
+      margin: 0;
+      font-family: Arial;
+      background: #f0f2f5;
     }
 
-    .box {
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      display: inline-block;
-    }
-
-    h1 {
-      color: #333;
-    }
-
-    p {
-      color: #666;
-    }
-
-    button {
-      padding: 10px 20px;
-      border: none;
-      background: #4CAF50;
+    /* Header */
+    header {
+      background: #1877f2;
       color: white;
-      border-radius: 8px;
-      cursor: pointer;
+      padding: 15px;
+      text-align: center;
+      font-size: 20px;
+      position: fixed;
+      width: 100%;
+      top: 0;
     }
 
-    button:hover {
-      background: #45a049;
+    /* Content */
+    main {
+      padding: 70px 10px 70px;
+    }
+
+    .card {
+      background: white;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Bottom Menu */
+    nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: white;
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid #ccc;
+      padding: 10px 0;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      font-size: 16px;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="box">
-    <h1>សួស្តី! 🌍</h1>
-    <p>នេះជាវេបសាយដំបូងរបស់ខ្ញុំ</p>
-    <button onclick="alert('Hello 👋')">ចុចខ្ញុំ</button>
+<header>
+  My App 🚀
+</header>
+
+<main>
+
+  <div class="card">
+    <h3>Post 1</h3>
+    <p>នេះជាការបង្ហោះដំបូង 😎</p>
   </div>
+
+  <div class="card">
+    <h3>Post 2</h3>
+    <p>ខ្ញុំកំពុងរៀន HTML 🚀</p>
+  </div>
+
+</main>
+
+<nav>
+  <button onclick="alert('Home')">🏠 Home</button>
+  <button onclick="alert('Search')">🔍 Search</button>
+  <button onclick="alert('Profile')">👤 Profile</button>
+</nav>
 
 </body>
 </html>
