@@ -66,69 +66,40 @@
 
 <main>
 
+  <!-- Post 1 -->
   <div class="card">
     <h2>Post 1</h2>
     <p>...</p>
-    <button id="btn1" onclick="like1()">
-      👍 Like (<span id="count1">0</span>)
+
+    <button onclick="like(this)">
+      👍 Like (<span>0</span>)
     </button>
+
+    <!-- Comment -->
+    <div class="comment-box">
+      <input type="text" id="input1" placeholder="Write a comment...">
+      <button onclick="addComment('input1','list1')">Post</button>
+    </div>
+
+    <ul id="list1"></ul>
   </div>
 
+  <!-- Post 2 -->
   <div class="card">
     <h2>Post 2</h2>
     <p>...</p>
-    <button id="btn2" onclick="like2()">
-      👍 Like (<span id="count2">0</span>)
+
+    <button onclick="like(this)">
+      👍 Like (<span>0</span>)
     </button>
+
+    <!-- Comment -->
+    <div class="comment-box">
+      <input type="text" id="input2" placeholder="Write a comment...">
+      <button onclick="addComment('input2','list2')">Post</button>
+    </div>
+
+    <ul id="list2"></ul>
   </div>
 
 </main>
-
-<footer>
-  <div>🏠 Home</div>
-  <div>🔍 Search</div>
-  <div>👤 Profile</div>
-</footer>
-
-<script>
-let c1 = 0;
-let c2 = 0;
-
-let liked1 = false;
-let liked2 = false;
-
-function like1() {
-  let btn = document.getElementById("btn1");
-
-  if (!liked1) {
-    c1++;
-    liked1 = true;
-    btn.classList.add("liked");
-    btn.innerHTML = "❤️ Liked (<span id='count1'>" + c1 + "</span>)";
-  } else {
-    c1--;
-    liked1 = false;
-    btn.classList.remove("liked");
-    btn.innerHTML = "👍 Like (<span id='count1'>" + c1 + "</span>)";
-  }
-}
-
-function like2() {
-  let btn = document.getElementById("btn2");
-
-  if (!liked2) {
-    c2++;
-    liked2 = true;
-    btn.classList.add("liked");
-    btn.innerHTML = "❤️ Liked (<span id='count2'>" + c2 + "</span>)";
-  } else {
-    c2--;
-    liked2 = false;
-    btn.classList.remove("liked");
-    btn.innerHTML = "👍 Like (<span id='count2'>" + c2 + "</span>)";
-  }
-}
-</script>
-
-</body>
-</html>
