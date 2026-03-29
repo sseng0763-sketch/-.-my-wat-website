@@ -40,13 +40,17 @@
     }
 
     button {
-      background: #42b72a;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-    }
+  background: #42b72a;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
 
+
+.liked {
+  background: red !important;
+}
     footer {
       position: fixed;
       bottom: 0;
@@ -107,3 +111,42 @@
 
 </body>
 </html>
+<script>
+  let c1 = 0;
+  let c2 = 0;
+
+  let liked1 = false;
+  let liked2 = false;
+
+  function like1() {
+    let btn = document.getElementById("btn1");
+
+    if (!liked1) {
+      c1++;
+      liked1 = true;
+      btn.classList.add("liked");
+      btn.innerHTML = "❤️ Liked (<span id='count1'>" + c1 + "</span>)";
+    } else {
+      c1--;
+      liked1 = false;
+      btn.classList.remove("liked");
+      btn.innerHTML = "👍 Like (<span id='count1'>" + c1 + "</span>)";
+    }
+  }
+
+  function like2() {
+    let btn = document.getElementById("btn2");
+
+    if (!liked2) {
+      c2++;
+      liked2 = true;
+      btn.classList.add("liked");
+      btn.innerHTML = "❤️ Liked (<span id='count2'>" + c2 + "</span>)";
+    } else {
+      c2--;
+      liked2 = false;
+      btn.classList.remove("liked");
+      btn.innerHTML = "👍 Like (<span id='count2'>" + c2 + "</span>)";
+    }
+  }
+</script>
