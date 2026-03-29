@@ -50,6 +50,18 @@
     button:active {
   transform: scale(0.95);
 }
+.heart {
+  position: absolute;
+  color: red;
+  font-size: 20px; 
+  animation: floatUp 1s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-50px); }
+}
     footer {
       position: fixed;
       bottom: 0;
