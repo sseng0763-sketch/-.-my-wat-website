@@ -34,23 +34,18 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    .card img {
-      width: 100%;
-      border-radius: 10px;
+    button {
+      background: #42b72a;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
     }
 
-    button {
-  background: #42b72a;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-}
+    .liked {
+      background: red !important;
+    }
 
-
-.liked {
-  background: red !important;
-}
     footer {
       position: fixed;
       bottom: 0;
@@ -66,87 +61,73 @@
 
 <body>
 
-  <header>📱 My App</header>
+<header>📱 My App</header>
 
-  <main>
+<main>
 
-    <div class="card">
-  <h2>Post 1</h2>
-  <p>...</p>
-  <button onclick="like1()">
-    👍 Like (<span id="count1">0</span>)
-  </button>
-</div>
+  <div class="card">
+    <h2>Post 1</h2>
+    <p>...</p>
+    <button id="btn1" onclick="like1()">
+      👍 Like (<span id="count1">0</span>)
+    </button>
+  </div>
 
-<div class="card">
-  <h2>Post 2</h2>
-  <p>...</p>
-  <button onclick="like2()">
-    👍 Like (<span id="count2">0</span>)
-  </button>
-</div>
+  <div class="card">
+    <h2>Post 2</h2>
+    <p>...</p>
+    <button id="btn2" onclick="like2()">
+      👍 Like (<span id="count2">0</span>)
+    </button>
+  </div>
 
-  </main>
+</main>
 
-  <footer>
-    <div>🏠 Home</div>
-    <div>🔍 Search</div>
-    <div>👤 Profile</div>
-  </footer>
+<footer>
+  <div>🏠 Home</div>
+  <div>🔍 Search</div>
+  <div>👤 Profile</div>
+</footer>
 
-  <script>
-  let c1 = 0;
-  let c2 = 0;
+<script>
+let c1 = 0;
+let c2 = 0;
 
-  function like1() {
+let liked1 = false;
+let liked2 = false;
+
+function like1() {
+  let btn = document.getElementById("btn1");
+
+  if (!liked1) {
     c1++;
-    document.getElementById("count1").innerText = c1;
+    liked1 = true;
+    btn.classList.add("liked");
+    btn.innerHTML = "❤️ Liked (<span id='count1'>" + c1 + "</span>)";
+  } else {
+    c1--;
+    liked1 = false;
+    btn.classList.remove("liked");
+    btn.innerHTML = "👍 Like (<span id='count1'>" + c1 + "</span>)";
   }
+}
 
-  function like2() {
+function like2() {
+  let btn = document.getElementById("btn2");
+
+  if (!liked2) {
     c2++;
-    document.getElementById("count2").innerText = c2;
+    liked2 = true;
+    btn.classList.add("liked");
+    btn.innerHTML = "❤️ Liked (<span id='count2'>" + c2 + "</span>)";
+  } else {
+    c2--;
+    liked2 = false;
+    btn.classList.remove("liked");
+    btn.innerHTML = "👍 Like (<span id='count2'>" + c2 + "</span>)";
   }
+}
 </script>
 
 </body>
 </html>
-<script>
-  let c1 = 0;
-  let c2 = 0;
-
-  let liked1 = false;
-  let liked2 = false;
-
-  function like1() {
-    let btn = document.getElementById("btn1");
-
-    if (!liked1) {
-      c1++;
-      liked1 = true;
-      btn.classList.add("liked");
-      btn.innerHTML = "❤️ Liked (<span id='count1'>" + c1 + "</span>)";
-    } else {
-      c1--;
-      liked1 = false;
-      btn.classList.remove("liked");
-      btn.innerHTML = "👍 Like (<span id='count1'>" + c1 + "</span>)";
-    }
-  }
-
-  function like2() {
-    let btn = document.getElementById("btn2");
-
-    if (!liked2) {
-      c2++;
-      liked2 = true;
-      btn.classList.add("liked");
-      btn.innerHTML = "❤️ Liked (<span id='count2'>" + c2 + "</span>)";
-    } else {
-      c2--;
-      liked2 = false;
-      btn.classList.remove("liked");
-      btn.innerHTML = "👍 Like (<span id='count2'>" + c2 + "</span>)";
-    }
-  }
-</script>
