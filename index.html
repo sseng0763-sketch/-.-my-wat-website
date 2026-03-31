@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>My App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- 🎨 CSS -->
   <style>
     body {
       margin: 0;
@@ -22,7 +22,7 @@
     }
 
     main {
-      padding: 70px 10px 70px;
+      padding: 70px 10px;
     }
 
     .card {
@@ -30,230 +30,68 @@
       padding: 15px;
       margin: 10px;
       border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      position: relative;
     }
 
     button {
-      background: #42b72a;
+      background: green;
       color: white;
+      padding: 10px;
       border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      transition: 0.3s;
     }
 
-    button.liked {
+    .liked {
       background: red;
-      transform: scale(1.1);
     }
 
-    button:active {
-      transform: scale(0.95);
+    /* 🌙 dark mode */
+    body.dark {
+      background: #18191a;
+      color: white;
     }
 
-    /* ❤️ small hearts */
-    .heart {
-      position: absolute;
-      color: red;
-      animation: floatUp 1s ease forwards;
-      pointer-events: none;
-    }
-
-    @keyframes floatUp {
-      0% { opacity: 1; transform: translateY(0) scale(1); }
-      100% { opacity: 0; transform: translateY(-60px) scale(1.5); }
-    }
-
-    /* ❤️ BIG HEART */
-    .big-heart {
-      position: absolute;
-      top: 40%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      font-size: 80px;
-      opacity: 0;
-      pointer-events: none;
-      animation: pop 0.6s ease forwards;
-    }
-
-    @keyframes pop {
-      0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-      50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
-      100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
-    }
-
-    footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background: white;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-      border-top: 1px solid #ccc;
+    body.dark .card {
+      background: #242526;
     }
   </style>
 </head>
 
 <body>
 
-<header>📱 My App</header>
+  <!-- 🧱 HTML -->
+  <header>
+    📱 My App
+    <button onclick="toggleDark()">🌙</button>
+  </header>
 
-<main>
+  <main>
+    <div class="card">
+      <h2>Post</h2>
 
-  <!-- Post -->
-  <div class="card" ondblclick="doubleLike(this)">
-    <h2>Post</h2>
-    <p>Double tap ❤️</p>
-
-    <button onclick="like(this)">
-      👍 Like (<span>0</span>)
-    </button>
-
-    <div class="comment-box">
-      <input type="text" placeholder="Write a comment...">
-      <button onclick="addComment(this)">Post</button>
+      <button onclick="like(this)">
+        👍 Like (<span>0</span>)
+      </button>
     </div>
+  </main>
 
-    <ul></ul>
-  </div>
+  <!-- ⚙️ JavaScript -->
+  <script>
+    function like(btn) {
+      let span = btn.querySelector("span");
+      let count = parseInt(span.innerText);
 
-</main>
+      if (!btn.classList.contains("liked")) {
+        btn.classList.add("liked");
+        span.innerText = count + 1;
+      } else {
+        btn.classList.remove("liked");
+        span.innerText = count - 1;
+      }
+    }
 
-<footer>
-  <div>🏠</div>
-  <div>🔍</div>
-  <div>➕</div>
-  <div>❤️</div>
-  <div>👤</div>
-</footer>
+    function toggleDark() {
+      document.body.classList.toggle("dark");
+    }
+  </script>
 
-<script>
-// 👍 LIKE BUTTON
-function like(btn) {
-  let count = btn.querySelector("span");
-  let c = parseInt(count.innerText);
-
-  let id = getId(btn);
-
-  if (!btn.classList.contains("liked")) {
-    btn.classList.add("liked");
-    c++;
-  } else {
-    btn.classList.remove("liked");
-    c--;
-  }
-
-  count.innerText = c;
-
-  // 💾 save per post
-  localStorage.setItem("like-" + id, c);
-
-  createHearts(btn);
-}
-
-// ❤️ DOUBLE TAP
-function doubleLike(card) {
-  let btn = card.querySelector("button");
-  let count = btn.querySelector("span");
-  let c = parseInt(count.innerText);
-
-  let id = getId(btn);
-
-  if (!btn.classList.contains("liked")) {
-    btn.classList.add("liked");
-    c++;
-    count.innerText = c;
-    localStorage.setItem("like-" + id, c);
-  }
-
-  createHearts(btn);
-  showBigHeart(card);
-}
-
-// 🧠 generate unique id
-function getId(btn) {
-  let card = btn.closest(".card");
-  return [...document.querySelectorAll(".card")].indexOf(card);
-}
-
-// 💥 small hearts
-function createHearts(btn) {
-  let rect = btn.getBoundingClientRect();
-
-  for (let i = 0; i < 6; i++) {
-    let heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerText = "❤️";
-
-    let offsetX = (Math.random() - 0.5) * 50;
-    let offsetY = Math.random() * 20;
-
-    heart.style.left = rect.left + window.scrollX + rect.width / 2 + offsetX + "px";
-    heart.style.top = rect.top + window.scrollY - offsetY + "px";
-
-    heart.style.fontSize = (16 + Math.random() * 20) + "px";
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => heart.remove(), 1000);
-  }
-}
-
-// ❤️ BIG center heart
-function showBigHeart(card) {
-  let big = document.createElement("div");
-  big.className = "big-heart";
-  big.innerText = "❤️";
-
-  card.appendChild(big);
-
-  setTimeout(() => big.remove(), 600);
-}
-
-// 💬 COMMENT
-function addComment(btn) {
-  let box = btn.parentElement;
-  let input = box.querySelector("input");
-  let list = box.nextElementSibling;
-
-  let id = getId(btn);
-
-  if (input.value.trim() === "") return;
-
-  let li = document.createElement("li");
-  li.innerText = input.value;
-
-  list.appendChild(li);
-
-  // 💾 save comment
-  let comments = JSON.parse(localStorage.getItem("cmt-" + id) || "[]");
-  comments.push(input.value);
-  localStorage.setItem("cmt-" + id, JSON.stringify(comments));
-
-  input.value = "";
-}
-
-// 🔄 LOAD DATA
-window.onload = () => {
-  document.querySelectorAll(".card").forEach((card, index) => {
-    let btn = card.querySelector("button");
-    let span = btn.querySelector("span");
-
-    // 👍 load like
-    let savedLike = localStorage.getItem("like-" + index);
-    if (savedLike) span.innerText = savedLike;
-
-    // 💬 load comment
-    let list = card.querySelector("ul");
-    let savedCmt = JSON.parse(localStorage.getItem("cmt-" + index) || "[]");
-
-    savedCmt.forEach(text => {
-      let li = document.createElement("li");
-      li.innerText = text;
-      list.appendChild(li);
-    });
-  });
-};
-</script>
+</body>
+</html>
