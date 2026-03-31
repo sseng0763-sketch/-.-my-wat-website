@@ -117,45 +117,34 @@
     <ul id="list2"></ul>
   </div>
 
-</main>
- <script>
-let c1 = 0;
-let liked1 = false;
-
-function like1(btn) {
-  let count = document.getElementById("count1");
-
-  if (!liked1) {
-    c1++;
-    liked1 = true;
-    btn.classList.add("liked");
-  } else {
-    c1--;
-    liked1 = false;
-    btn.classList.remove("liked");
-  }
-
-  count.innerText = c1;
-
-  // ❤️ បង្កើត heart
-  createHeart(btn);
-}
-
+</main><script>
 function createHeart(btn) {
-  let heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerText = "❤️";
-
-  // ទីតាំង
   let rect = btn.getBoundingClientRect();
-  heart.style.left = rect.left + rect.width / 2 - 10 + "px";
-  heart.style.top = rect.top + "px";
 
-  document.body.appendChild(heart);
+  // បង្កើត heart 5 ដុំ
+  for (let i = 0; i < 5; i++) {
 
-  // លុបក្រោយ animation
-  setTimeout(() => {
-    heart.remove();
-  }, 1000);
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "❤️";
+
+    // 📍 ទីតាំង (random តិច)
+    let offsetX = (Math.random() - 0.5) * 40;
+    let offsetY = Math.random() * 20;
+
+    heart.style.left = rect.left + rect.width / 2 + offsetX + "px";
+    heart.style.top = rect.top - offsetY + "px";
+
+    // 📏 ទំហំ random
+    let size = 16 + Math.random() * 20;
+    heart.style.fontSize = size + "px";
+
+    document.body.appendChild(heart);
+
+    // ❌ លុបក្រោយ animation
+    setTimeout(() => {
+      heart.remove();
+    }, 1000);
+  }
 }
 </script>
