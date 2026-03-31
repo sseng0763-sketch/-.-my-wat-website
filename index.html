@@ -135,13 +135,20 @@ function like(btn) {
   let count = btn.querySelector("span");
   let c = parseInt(count.innerText);
 
+  let id = getId(btn);
+
   if (!btn.classList.contains("liked")) {
     btn.classList.add("liked");
-    count.innerText = c + 1;
+    c++;
   } else {
     btn.classList.remove("liked");
-    count.innerText = c - 1;
+    c--;
   }
+
+  count.innerText = c;
+
+  // 💾 save per post
+  localStorage.setItem("like-" + id, c);
 
   createHearts(btn);
 }
@@ -149,16 +156,26 @@ function like(btn) {
 // ❤️ DOUBLE TAP
 function doubleLike(card) {
   let btn = card.querySelector("button");
+  let count = btn.querySelector("span");
+  let c = parseInt(count.innerText);
+
+  let id = getId(btn);
 
   if (!btn.classList.contains("liked")) {
     btn.classList.add("liked");
-
-    let count = btn.querySelector("span");
-    count.innerText = parseInt(count.innerText) + 1;
+    c++;
+    count.innerText = c;
+    localStorage.setItem("like-" + id, c);
   }
 
   createHearts(btn);
   showBigHeart(card);
+}
+
+// 🧠 generate unique id
+function getId(btn) {
+  let card = btn.closest(".card");
+  return [...document.querySelectorAll(".card")].indexOf(card);
 }
 
 // 💥 small hearts
@@ -173,8 +190,8 @@ function createHearts(btn) {
     let offsetX = (Math.random() - 0.5) * 50;
     let offsetY = Math.random() * 20;
 
-    heart.style.left = rect.left + rect.width / 2 + offsetX + "px";
-    heart.style.top = rect.top - offsetY + "px";
+    heart.style.left = rect.left + window.scrollX + rect.width / 2 + offsetX + "px";
+    heart.style.top = rect.top + window.scrollY - offsetY + "px";
 
     heart.style.fontSize = (16 + Math.random() * 20) + "px";
 
@@ -201,15 +218,42 @@ function addComment(btn) {
   let input = box.querySelector("input");
   let list = box.nextElementSibling;
 
+  let id = getId(btn);
+
   if (input.value.trim() === "") return;
 
   let li = document.createElement("li");
   li.innerText = input.value;
 
   list.appendChild(li);
+
+  // 💾 save comment
+  let comments = JSON.parse(localStorage.getItem("cmt-" + id) || "[]");
+  comments.push(input.value);
+  localStorage.setItem("cmt-" + id, JSON.stringify(comments));
+
   input.value = "";
 }
-</script>
 
-</body>
-</html>
+// 🔄 LOAD DATA
+window.onload = () => {
+  document.querySelectorAll(".card").forEach((card, index) => {
+    let btn = card.querySelector("button");
+    let span = btn.querySelector("span");
+
+    // 👍 load like
+    let savedLike = localStorage.getItem("like-" + index);
+    if (savedLike) span.innerText = savedLike;
+
+    // 💬 load comment
+    let list = card.querySelector("ul");
+    let savedCmt = JSON.parse(localStorage.getItem("cmt-" + index) || "[]");
+
+    savedCmt.forEach(text => {
+      let li = document.createElement("li");
+      li.innerText = text;
+      list.appendChild(li);
+    });
+  });
+};
+</script>
