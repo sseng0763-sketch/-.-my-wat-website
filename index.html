@@ -3,33 +3,15 @@
 <head>
   <title>My App</title>
 
-  <!-- 🎨 CSS -->
   <style>
     body {
-      margin: 0;
+      text-align: center;
       font-family: Arial;
       background: #f0f2f5;
     }
 
-    header {
-      background: #1877f2;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      position: fixed;
-      width: 100%;
-      top: 0;
-    }
-
-    main {
-      padding: 70px 10px;
-    }
-
-    .card {
-      background: white;
-      padding: 15px;
-      margin: 10px;
-      border-radius: 10px;
+    h1 {
+      color: blue;
     }
 
     button {
@@ -37,61 +19,90 @@
       color: white;
       padding: 10px;
       border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: 0.3s;
     }
 
-    .liked {
+    button.liked {
       background: red;
-    }
-
-    /* 🌙 dark mode */
-    body.dark {
-      background: #18191a;
-      color: white;
-    }
-
-    body.dark .card {
-      background: #242526;
+      transform: scale(1.1);
     }
   </style>
 </head>
 
 <body>
 
-  <!-- 🧱 HTML -->
-  <header>
-    📱 My App
-    <button onclick="toggleDark()">🌙</button>
-  </header>
+<h1>My App</h1>
 
-  <main>
-    <div class="card">
-      <h2>Post</h2>
+<button onclick="like(this)">
+  Like ❤️ (<span>0</span>)
+</button>
+<script>
+window.onload = () => {
+  let saved = localStorage.getItem("likeCount");
 
-      <button onclick="like(this)">
-        👍 Like (<span>0</span>)
-      </button>
-    </div>
-  </main>
+  if (saved) {
+    document.querySelector("span").innerText = saved;
+  }
+};
 
-  <!-- ⚙️ JavaScript -->
-  <script>
-    function like(btn) {
-      let span = btn.querySelector("span");
-      let count = parseInt(span.innerText);
+function like(btn) {
+  let count = btn.querySelector("span");
+  let c = parseInt(count.innerText);
 
-      if (!btn.classList.contains("liked")) {
-        btn.classList.add("liked");
-        span.innerText = count + 1;
-      } else {
-        btn.classList.remove("liked");
-        span.innerText = count - 1;
-      }
-    }
+  if (btn.classList.contains("liked")) {
+    btn.classList.remove("liked");
+    count.innerText = c - 1;
+  } else {
+    btn.classList.add("liked");
+    count.innerText = c + 1;
+  }
 
-    function toggleDark() {
-      document.body.classList.toggle("dark");
-    }
-  </script>
+  localStorage.setItem("likeCount", count.innerText);
+}
+  function doubleLike(box) {
+  let btn = box.querySelector("button");
+  let count = btn.querySelector("span");
+  let c = parseInt(count.innerText);
+
+  // បើមិនទាន់ like
+  if (!btn.classList.contains("liked")) {
+    btn.classList.add("liked");
+    count.innerText = c + 1;
+
+    localStorage.setItem("likeCount", count.innerText);
+  }
+
+  showBigHeart(box);
+}
+  function showBigHeart(box) {
+  let heart = document.createElement("div");
+  heart.innerText = "❤️";
+
+  heart.style.position = "absolute";
+  heart.style.fontSize = "60px";
+  heart.style.left = Math.random() * 80 + 10 + "%";
+  heart.style.top = Math.random() * 80 + 10 + "%";
+  heart.style.transform = "translate(-50%, -50%) rotate(0deg)";
+  heart.style.transition = "all 0.4s ease-out";
+  heart.style.opacity = "1";
+
+  box.appendChild(heart);
+
+  let moveY = -50 - Math.random() * 50;
+  let rotate = Math.random() * 60 - 30;
+
+  setTimeout(() => {
+    heart.style.opacity = "0";
+    heart.style.transform = `translate(-50%, ${moveY}%) rotate(${rotate}deg)`;
+  }, 100);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 600);
+}
+</script>
 
 </body>
 </html>
